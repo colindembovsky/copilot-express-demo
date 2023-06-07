@@ -1,0 +1,31 @@
+name: Build
+
+# add a trigger for prs and pushes to main
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+# job to build and test the project
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+
+      # setup nodejs
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 16.x
+      
+      # install dependencies
+      - run: npm install
+
+      # build the project
+      - run: npm run build
+
+      # test the project
+      - run: npm run test
