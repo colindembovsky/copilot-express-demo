@@ -1,29 +1,24 @@
 const express = require('express')
 const app = express()
 const port = 3000
-
-// create an oktokit client
-const { Octokit } = require('@octokit/core');
-const octo = new Octokit({ auth: process.env.GITHUB_TOKEN });
-
-// create a function to get the repos for a username
-const getRepos = async (username) => {
-  const { data } = await octo.request('GET /users/{username}/repos', {
-    username: username,
-  });
-  // return just the name and description
-  const repos = data.map(({ name, description }) => ({ name, description }));
-  // sort by name
-  return repos.sort((a, b) => a.name.localeCompare(b.name));
-};
+// import GitHubWrapper
+const GitHubWrapper = require('./github-wrapper.js')
+// create a new instance of GitHubWrapper
+const gitHubWrapper = new GitHubWrapper();
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+// add a route to get repos by username
 app.get('/repos/:username', async (req, res) => {
-  const repos = await getRepos(req.params.username);
-  res.json(repos);
+  try {
+    const repos = await gitHubWrapper.getReposForUser(req.params.username);
+    res.send(repos);
+  }
+  catch (err) {
+    res.errored(err);
+  }
 });
 
 app.listen(port, () => {
