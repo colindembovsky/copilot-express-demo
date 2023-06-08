@@ -1,13 +1,22 @@
-# GitHub Codespaces ♥️ Express
+# GitHub Copilot Demo 🚀
 
-Welcome to your shiny new Codespace running Express! We've got everything fired up and running for you to explore Express.
+This sample repo can be used to generate a quick app with unit tests/mocks and an Actions workflow.
 
-You've got a blank canvas to work on from a git perspective as well. There's a single initial commit with the what you're seeing right now - where you go from here is up to you!
+## Walkthrough
 
-Everything you do here is contained within this one codespace. There is no repository on GitHub yet. If and when you’re ready you can click "Publish Branch" and we’ll create your repository and push up your project. If you were just exploring then and have no further need for this code then you can simply delete your codespace and it's gone forever.
+Have a browser open with the completed code (on `main`) as your cheat-sheet.
 
-To run this application:
-
-```
-npm start
-```
+1. Open the `demo-start` branch in a Codespace
+2. Add a new file called `github-wrapper.js`
+3. In a terminal, run `npm install octokit` to install the Octokit package
+4. Create a class/method to get repos for a user
+5. Open `index.js` and add the method call to the method
+6. Show it running in the browser (browse to the corresponding route)
+7. Create a new file called `github-wrapper.test.js`
+8. Run `npm install jest --save-dev` to add Jest
+9. Generate a mock Octokit
+10. Generate the test method
+11. Open `package.json` and add the `test: jest` command in `scripts`
+12. Run `npm run test` to show the test running
+13. Create `.github/workflows/build.yml`
+14. Generate the workflow using Copilot
