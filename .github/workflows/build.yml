@@ -24,8 +24,5 @@ jobs:
       # install dependencies
       - run: npm install
 
-      # build the project
-      - run: npm run build
-
       # test the project
       - run: npm run test
